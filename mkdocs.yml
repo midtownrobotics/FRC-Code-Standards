@@ -1,0 +1,18 @@
+site_name: My Docs
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - java
+    - json
+nav:
+  - FRC 1648 Code Standards: index.md
+  - Global Standards: global-standards.md
+  - Filesystem Standards: filesystem-standards.md
+  - Constants Standards: constants-standards.md
+  - Logging Standards: logging-standards.md
+  - Advantagekit Standards: advantagekit-standards.md
+  - Subsystem Standards: subsystem-standards.md
+  - Control Loop Standards: control-loop-standards.md
+  - RobotState Standards: robotstate-standards.md
