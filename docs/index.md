@@ -11,8 +11,8 @@ This repository defines the coding standards and best practices that guide our t
 * Foster Innovation and Excellence: Encourage a culture of continual learning, improvement, and technical mastery by adhering to professional-level coding standards.
 * Ensure Safety and Robustness: Implement safeguards in code to protect against failures or unforeseen issues, ensuring the safety and reliability of our robots in competition and testing.
 
-<!-- ## Robots Implemented
-Add Future Robots Here -->
+## Robots Implemented
+Add Future Robots Here
 
 ## Table of Contents
 * [Global Standards](global-standards.md)

@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install mkdocs mkdocs-rtd-theme
+        pip install mkdocs
     
     - name: Build MkDocs site
       run: mkdocs build --clean
