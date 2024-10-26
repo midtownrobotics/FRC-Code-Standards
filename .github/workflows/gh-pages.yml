@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install mkdocs mkdocs-material  # Replace `mkdocs-material` with your theme if different
+        pip install mkdocs mkdocs-rtd-theme
     
     - name: Build MkDocs site
       run: mkdocs build --clean
