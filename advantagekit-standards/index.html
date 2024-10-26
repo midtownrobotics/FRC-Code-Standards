@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Advantagekit Standards - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Advantagekit Standards";
+        var mkdocs_page_input_path = "advantagekit-standards.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/java.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">FRC 1648 Code Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../global-standards/">Global Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../filesystem-standards/">Filesystem Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../constants-standards/">Constants Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging-standards/">Logging Standards</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Advantagekit Standards</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#io-interfaces-and-inputs">IO Interfaces and Inputs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#io-implementations">IO Implementations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simulated-io-implementations">Simulated IO Implementations</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../subsystem-standards/">Subsystem Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../control-loop-standards/">Control Loop Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../robotstate-standards/">RobotState Standards</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Advantagekit Standards</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="advantagekit-standards">AdvantageKit Standards</h1>
+<p>This section provides standards that govern the IO inputs and implementations in robot projects.</p>
+<h2 id="io-interfaces-and-inputs">IO Interfaces and Inputs</h2>
+<p>A subsystem's IO interface is what defines the inputs that are automatically logged for that subsystem. It is important to log any information that could be useful in <a href="https://github.com/Mechanical-Advantage/AdvantageKit/blob/main/docs/WHAT-IS-ADVANTAGEKIT.md#example-1-output-logging-in-replay">Log Replay</a>, because any information that is not logged as an input can't be used to create new simulated outputs.</p>
+<p>The fields that 1648 logs in every subsystem's IO interface depends on the hardware used in that subsystem:</p>
+<ul>
+<li>Motors:<ul>
+<li>Position (<a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/geometry/transformations.html#rotation2d">Rotation2d</a>)</li>
+<li>Velocity (Radians/Second)</li>
+<li>Applied Voltage (Volts)</li>
+<li>Supply Current (Amps)</li>
+<li>Stator Current (Amps)</li>
+<li>Temperature (Fahrenheit)</li>
+</ul>
+</li>
+<li>Pneumatic Actuators:<ul>
+<li>Position (boolean, true if extended, false if retracted)</li>
+</ul>
+</li>
+</ul>
+<p>This is not a comprehensive list, rather a starting point for input logging that will be sufficient for most subsystems.</p>
+<p>Every IO interface must have a static Inputs class where all the inputs are defined and instantiated with default values. The <code>@AutoLog</code> annotation must be used to tell the robot code that the fields in the inputs class are to be logged. Every IO interface must also have a default <code>updateInputs</code> method, updates the inputs for the subsystem every loop cycle.</p>
+<pre><code class="language-java">package frc.robot.subsystems.intake;
+
+import org.littletonrobotics.junction.AutoLog;
+
+public interface IntakeIO {
+  @AutoLog
+  public static class IntakeIOInputs {
+    public Rotation2d rollersPosition = Rotation2d.fromRadians(0.0);
+    public double rollersVelocityRadPerSec = 0.0;
+    public double rollersAppliedVolts = 0.0;
+    public double rollersSupplyCurrentAmps = 0.0;
+    public double rollersStatorCurrentAmps = 0.0;
+    public double rollersTempCelcius = 0.0;
+
+    public boolean leftPosition = false;
+    public boolean rightPosition = false;
+  }
+
+  public default void updateInputs(IntakeIOInputs inputs) {}
+
+  public default void setRollersVoltage(double volts) {}
+
+  public default void setIntakePosition(boolean isDeployed) {}
+}
+
+</code></pre>
+<h2 id="io-implementations">IO Implementations</h2>
+<p>In FRC, it is often useful to abstract a subsystem's hardware away from its logic. This is useful for running multiple robots with different hardware using the same code. For example, a practice robot may be running one type of motor, whereas the competition robot may run a different type of motor. In order to run the same code on both robots, hardware abstraction is used to keep the logic the same for both robots, while switching between hardware. This is done through the use of IO implementations.</p>
+<p>IO implementations are where actual hardware behaviors are defined. Each IO implementation must:
+- Implement its subsystem IO interface.
+- Override <code>updateInputs()</code> for specific hardware updates.
+- Implement hardware specific actuation.</p>
+<!-- ex. (Intake TalonFX IO implementation for FRC 190 2024 robot, Snapback) -->
+
+<pre><code class="language-java">package frc.robot.subsystems.intake;
+
+import com.ctre.phoenix6.BaseStatusSignal;
+import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VoltageOut;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
+
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.util.Alert;
+import frc.robot.util.Alert.AlertType;
+
+public class IntakeIOTalonFX implements IntakeIO {
+  private final TalonFX rollersTalon;
+  private final Solenoid solenoid;
+
+  private final StatusSignal&lt;Double&gt; rollersPosition;
+  private final StatusSignal&lt;Double&gt; rollersVelocity;
+  private final StatusSignal&lt;Double&gt; rollersAppliedVolts;
+  private final StatusSignal&lt;Double&gt; rollersSupplyCurrent;
+  private final StatusSignal&lt;Double&gt; rollersStatorCurrent;
+  private final StatusSignal&lt;Double&gt; rollersTemperature;
+
+  private final Alert rollersDisconnectedAlert =
+      new Alert(&quot;Rollers Talon is disconnected, check CAN bus.&quot;, AlertType.ERROR);
+
+  public IntakeIOTalonFX() {
+    rollersTalon = new TalonFX(IntakeConstants.DEVICE_ID);
+    solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, IntakeConstants.SOLENOID_CHANNEL);
+
+    var config = new TalonFXConfiguration();
+    config.CurrentLimits.SupplyCurrentLimit = IntakeConstants.SUPPLY_CURRENT_LIMIT;
+    config.CurrentLimits.SupplyCurrentLimitEnable = true;
+    config.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    config.Audio.AllowMusicDurDisable = true;
+    config.Audio.BeepOnBoot = false;
+    config.Audio.BeepOnConfig = false;
+
+    rollersTalon.getConfigurator().apply(config);
+
+    rollersPosition = rollersTalon.getPosition();
+    rollersVelocity = rollersTalon.getVelocity();
+    rollersAppliedVolts = rollersTalon.getMotorVoltage();
+    rollersSupplyCurrent = rollersTalon.getSupplyCurrent();
+    rollersStatorCurrent = rollersTalon.getStatorCurrent();
+    rollersTemperature = rollersTalon.getDeviceTemp();
+
+    BaseStatusSignal.setUpdateFrequencyForAll(100.0, rollersVelocity);
+    BaseStatusSignal.setUpdateFrequencyForAll(
+        50.0, rollersPosition, rollersAppliedVolts, rollersSupplyCurrent, rollersStatorCurrent, rollersTemperature);
+    rollersTalon.optimizeBusUtilization();
+  }
+
+  @Override
+  public void updateInputs(IntakeIOInputs inputs) {
+    boolean rollersConnected =
+        BaseStatusSignal.refreshAll(
+                rollersVelocity,
+                rollersPosition,
+                rollersAppliedVolts,
+                rollersSupplyCurrent,
+                rollersStatorCurrent,
+                rollersTemperature)
+            .isOK();
+    rollersDisconnectedAlert.set(!rollersConnected);
+
+    inputs.rollersPositionRad =
+        Rotation2d.fromRadians(Units.rotationsToRadians(rollersPosition.getValueAsDouble()) / IntakeConstants.GEAR_RATIO);
+    inputs.rollersVelocityRadPerSec =
+        Units.rotationsToRadians(rollersVelocity.getValueAsDouble()) / IntakeConstants.GEAR_RATIO;
+    inputs.rollersAppliedVolts = rollersAppliedVolts.getValueAsDouble();
+    inputs.rollersSupplyCurrentAmps = rollersSupplyCurrent.getValueAsDouble();
+    inputs.rollersStatorCurrentAmps = rollersStatorCurrent.getValueAsDouble();
+    inputs.rollersTempCelcius = rollersTemperature.getValueAsDouble();
+
+    inputs.leftPosition = solenoid.get();
+  }
+
+  @Override
+  public void setRollersVoltage(double volts) {
+    rollersTalon.setControl(new VoltageOut(volts));
+  }
+
+  @Override
+  public void setIntakePosition(boolean position) {
+    solenoid.set(position);
+  }
+}
+
+</code></pre>
+<h2 id="simulated-io-implementations">Simulated IO Implementations</h2>
+<p>IO implementations can also be physics simulators. Instead of having simulation code in the subsystem, an IO implementation can be written and instantiated when running the robot code in simulation.</p>
+<!-- ex. (Intake simulator IO implementation for FRC 190 2024 robot, Snapback) -->
+
+<pre><code class="language-java">package frc.robot.subsystems.intake;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.simulation.DCMotorSim;
+import frc.robot.Constants;
+
+public class IntakeIOSim implements IntakeIO {
+  private DCMotorSim motorSim =
+      new DCMotorSim(
+          IntakeConstants.MOTOR_CONFIG,
+          IntakeConstants.GEAR_RATIO,
+          IntakeConstants.MOMENT_OF_INERTIA);
+
+  private double rollersAppliedVolts = 0.0;
+  private boolean leftPosition = false;
+  private boolean rightPosition = false;
+
+  @Override
+  public void updateInputs(IntakeIOInputs inputs) {
+    motorSim.update(Constants.LOOP_PERIOD_SECS);
+
+    inputs.rollersPositionRad = Rotation2d.fromRadians(motorSim.getAngularPositionRad());
+    inputs.rollersVelocityRadPerSec = motorSim.getAngularVelocityRadPerSec();
+    inputs.rollersAppliedVolts = rollersAppliedVolts;
+    inputs.rollersSupplyCurrentAmps = Math.abs(motorSim.getCurrentDrawAmps());
+    inputs.rollersTempCelcius = 0.0;
+
+    inputs.leftPosition = leftPosition;
+    inputs.rightPosition = rightPosition;
+  }
+
+  @Override
+  public void setRollersVoltage(double volts) {
+    rollersAppliedVolts = MathUtil.clamp(volts, -12.0, 12.0);
+    motorSim.setInputVoltage(rollersAppliedVolts);
+  }
+
+  @Override
+  public void setIntakePosition(boolean position) {
+    leftPosition = position;
+    rightPosition = position;
+  }
+}
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../logging-standards/" class="btn btn-neutral float-left" title="Logging Standards"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../subsystem-standards/" class="btn btn-neutral float-right" title="Subsystem Standards">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../logging-standards/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../subsystem-standards/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

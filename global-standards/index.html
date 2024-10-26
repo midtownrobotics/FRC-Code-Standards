@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Global Standards - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Global Standards";
+        var mkdocs_page_input_path = "global-standards.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/java.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">FRC 1648 Code Standards</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Global Standards</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#global-dependencies">Global Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objects">Objects</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#naming-conventions">Naming Conventions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#instantiation">Instantiation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modifiers">Modifiers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#default-units">Default Units</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../filesystem-standards/">Filesystem Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../constants-standards/">Constants Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging-standards/">Logging Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../advantagekit-standards/">Advantagekit Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../subsystem-standards/">Subsystem Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../control-loop-standards/">Control Loop Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../robotstate-standards/">RobotState Standards</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Global Standards</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="global-standards">Global Standards</h1>
+<p>This section provides standards that govern the setup and maintence of robot code projects.</p>
+<h2 id="global-dependencies">Global Dependencies</h2>
+<ul>
+<li><a href="https://github.com/wpilibsuite/allwpilib">WPIlib</a> is the framework that teams use to write code for FRC robots.</li>
+<li><a href="https://github.com/Mechanical-Advantage/AdvantageKit">AdvantageKit</a> is a logging framework created by <a href="https://www.thebluealliance.com/team/6328/">FRC team 6328</a> which has been released for public use.</li>
+<li><a href="https://github.com/lessthanoptimal/gversion-plugin">Gversion</a> is an <a href="https://github.com/Mechanical-Advantage/AdvantageKit">AdvantageKit</a> dependency that creates the <a href="BuildConstants.java"><code>BuildConstants.java</code></a> file which is important for log replay.</li>
+<li><a href="https://projectlombok.org/">Lombok</a> is an annotation based java library that helps reduce boilerplate code by automatically generating getters, setters, etc.</li>
+<li><a href="https://github.com/diffplug/spotless">Spotless</a> is a code formatter that automatically formats the entire project when compiled.</li>
+</ul>
+<p>These dependencies should be present in the <a href="build.gradle">build.gradle</a> file in each robot project.</p>
+<h2 id="objects">Objects</h2>
+<h3 id="naming-conventions">Naming Conventions</h3>
+<ul>
+<li>Classes and Enumerations should follow PascalCase.</li>
+<li>Variables should follow camelCase. Member reference variables should begin with <code>m_</code>.</li>
+<li>Constants should follow SNAKE_CASE.</li>
+<li>Directories should follow snake-case.</li>
+</ul>
+<h3 id="instantiation">Instantiation</h3>
+<p>Any object that can be instantiated without relying on constructor arguments, (e.g. constants and member variables) should be instantiated at declaration. These objects should be declared and instantiated above any variables that require a constructor for instantiation:</p>
+<pre><code class="language-java">...
+
+public class SomeClass {
+
+  private int someVariable = 0;
+
+  private SomeOtherClass m_someRobotVariable;
+
+  public SomeClass(SomeOtherClass someRobotVariable) {
+    this.m_someRobotVariable = someRobotVariable;
+  }
+
+  ...
+}
+</code></pre>
+<h3 id="modifiers">Modifiers</h3>
+<p>Member variables should always be private with <code>@Getter</code>/<code>@Setter</code> annotations if they require getters and/or setters. Static variables should always come before non-static variables</p>
+<p>Constants should always have the <code>public static final</code> modifiers.</p>
+<h2 id="default-units">Default Units</h2>
+<p>1648 uses these default units for all robot code:</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear Position</td>
+<td>Meters</td>
+</tr>
+<tr>
+<td>Linear Velocity</td>
+<td>Meters per Second</td>
+</tr>
+<tr>
+<td>Linear Acceleration</td>
+<td>Meters per Second Squared</td>
+</tr>
+<tr>
+<td>Angluar Position</td>
+<td>Radians</td>
+</tr>
+<tr>
+<td>Angular Velocity</td>
+<td>Radians per Second</td>
+</tr>
+<tr>
+<td>Angular Acceleration</td>
+<td>Radians per Second Squared</td>
+</tr>
+<tr>
+<td>Mass</td>
+<td>Kilograms</td>
+</tr>
+<tr>
+<td>Moment of Inertia</td>
+<td>Kilogram Meters Squared</td>
+</tr>
+<tr>
+<td>Force</td>
+<td>Netwons</td>
+</tr>
+<tr>
+<td>Torque/Moment</td>
+<td>Newton Meters</td>
+</tr>
+<tr>
+<td>Voltage</td>
+<td>Volts</td>
+</tr>
+<tr>
+<td>Current</td>
+<td>Amps</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>Fahrenheit</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="FRC 1648 Code Standards"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../filesystem-standards/" class="btn btn-neutral float-right" title="Filesystem Standards">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../filesystem-standards/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Control Loop Standards - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Control Loop Standards";
+        var mkdocs_page_input_path = "control-loop-standards.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/java.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">FRC 1648 Code Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../global-standards/">Global Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../filesystem-standards/">Filesystem Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../constants-standards/">Constants Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../logging-standards/">Logging Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../advantagekit-standards/">Advantagekit Standards</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../subsystem-standards/">Subsystem Standards</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Control Loop Standards</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#feedback-and-pid-control">Feedback and PID Control</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#key-terms">Key Terms:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#feedback-control">Feedback Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pid-controllers">PID controllers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#feedforward-control">Feedforward Control</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combining-feedback-and-feedforward-control">Combining Feedback and Feedforward control</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pid-control-with-motion-profiling">PID Control with Motion Profiling</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#standards">Standards</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tuning-controller-gains">Tuning Controller Gains</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#manual-tuning">Manual Tuning</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pid-controller">PID Controller</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pid-controller-with-motion-profile">PID Controller with Motion Profile</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sysid-tuning">SysID Tuning</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../robotstate-standards/">RobotState Standards</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Control Loop Standards</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="control-loop-standards">Control Loop Standards</h1>
+<p>This section provides standards that govern how control loops are implemented in 1648 robot code.</p>
+<h2 id="feedback-and-pid-control">Feedback and PID Control</h2>
+<h3 id="key-terms">Key Terms:</h3>
+<ul>
+<li>Process variable: The part of the robot being controlled. (ex. Arm position, gyro angle, etc).</li>
+<li>Setpoint: The desired value of the process variable.</li>
+<li>Output: The current value of the process variable.</li>
+<li>Error: setpoint - output, in other words, the difference between where the mechanism is and where it should be.</li>
+</ul>
+<p>NOTE: ALL EXAMPLE CODE IN THIS DOCUMENT USE WPILIB CLASSES TO IMPLEMENT CONTROL LOOPS. FOR ACTUAL HARDWARE, IT IS PREFERRED TO RUN CONTROL LOOPS ON THE MOTORCONTROLLER.</p>
+<h3 id="feedback-control">Feedback Control</h3>
+<p>Feedback control is a process by which the robot controls its mechanisms while referencing input data from its sensors. With most mechanisms, the goal is to reach the setpoint as fast and accurately as possible. In other words, it tries to reduce the error to 0.</p>
+<h3 id="pid-controllers">PID controllers</h3>
+<p>The most common form of feedback control is a <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/introduction-to-pid.html#introduction-to-pid">PID controller</a>. PID controllers consist of 3 gains which influence the behavior of different parts of the mechanism.</p>
+<p><a href="https://github.com/wpilibsuite/allwpilib">WPILib</a> has a built in <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html">PID Controller class</a> that is used when implementing feedback control.</p>
+<p>ex. (PID controller to aim the robot at the speaker for FRC 190 2024 robot, Snapback)</p>
+<pre><code class="language-java">PIDController aimController =
+        new PIDController(autoAimKP.get(), 0.0, autoAimKD.get(), Constants.LOOP_PERIOD_SECS);
+
+aimController.enableContinuousInput(-Math.PI, Math.PI);
+aimController.setTolerance(Units.degreesToRadians(1.0));
+
+
+// ...
+
+
+aimController.calculate(
+    measuredGyroAngle.getRadians(),
+    targetGyroAngle.get().getRadians())
+</code></pre>
+<p>The controller calculates the next control output which is used in the calculation of the robot's speed.</p>
+<h2 id="feedforward-control">Feedforward Control</h2>
+<p>In the previous example, the <code>autoAimKI</code> term is 0. The $K_i$ term, or the integral term of a PID controller, corrects for <a href="https://www.sciencedirect.com/topics/engineering/steady-state-error">steady state error</a> in the system, which is when the controller can't reach the setpoint.</p>
+<p><img alt="Steady State Error" src="images\Steady_State_Error.jpg" /></p>
+<p>The Integral term scales the output based on the total error over time. Meaning, as time progresses, if the output of the controller doesn't reach the setpoint, the Integral term will eventually rise to a value where the output reaches the setpoint.</p>
+<p>The Integral term of a PID controller is rarely used because:
+* It is reactive, meaning it reacts to the steady state error, slowing down the progression of the error to the setpoint.
+* It is prone to <a href="https://en.wikipedia.org/wiki/Integral_windup">Integral Windup</a>, which is when the mechanism is somehow impeded from reaching the setpoint, which causes the Integral term to rise high enough to cause the output to be too fast.</p>
+<p>When dealing with steady state error in FRC, most use a <a href="https://en.wikipedia.org/wiki/Feed_forward_(control)">Feedforward</a>, which predicts what the steady state error will be based on empircal measurements or theoretical system dynamics. In practice, this often means applying a constant output to a mechanism to overcome the force of gravity or static friction of the system.</p>
+<p>WPILib has multiple <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html">Feedforward classes</a> which are used for implementing Feedforward control.</p>
+<h2 id="combining-feedback-and-feedforward-control">Combining Feedback and Feedforward control</h2>
+<p>When controlling a mechanism, it is often necessary to use both a Feedforward and Feedback controller to account for steady state error like gravity or static friction, while still controlling the mechanism to the setpoint. This is done by simply adding the PID controller output to the feedforward output.</p>
+<!-- ex. (Shooter Feedforward and PID controller from FRC 190 2024 robot, Snapback) -->
+
+<pre><code class="language-java">leftFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
+rightFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
+
+leftFeedforward = new SimpleMotorFeedforward(KS_LEFT.get(), KV_LEFT.get(), KA_LEFT.get());
+rightFeedforward = new SimpleMotorFeedforward(KS_RIGHT.get(), KV_RIGHT.get(), KA_RIGHT.get());
+
+// ...
+
+leftFeedback.setSetpoint(leftSetpoint);
+rightFeedback.setSetpoint(rightSetpoint);
+
+io.setLeftVoltage(
+    leftFeedforward.calculate(leftSetpoint) + leftFeedback.calculate(inputs.leftVelocityRadPerSec));
+io.setRightVoltage(
+    rightFeedforward.calculate(rightSetpoint)+ rightFeedback.calculate(inputs.rightVelocityRadPerSec));
+</code></pre>
+<h2 id="pid-control-with-motion-profiling">PID Control with Motion Profiling</h2>
+<p>In FRC, it is often necessary to limit the speed or acceleration of a mechanism. This can be done with a <a href="https://www.motioncontroltips.com/what-is-a-motion-profile/">Motion Profile</a>. Motion profiles use a set of parameters, such as max velocity and acceleration to generate a series of setpoints which a controller can follow. This serves to artificially limit the velocity and/or acceleration of a system.</p>
+<p><img alt="Motion Profile" src="images/Motion_Profile.png" /></p>
+<p>WPILib has a <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html">ProfiledPIDController class</a> which handles the setpoint generation automatically.</p>
+<p>ex. (Hood profiled PID controller for FRC 1648 2024 robot, Snapback)</p>
+<pre><code class="language-java">ProfiledPIDController profiledFeedback =
+        new ProfiledPIDController(
+            KP.get(), 0.0, KD.get(), new Constraints(MAX_VELOCITY.get(), MAX_ACCELERATION.get()));
+
+
+
+// ...
+
+
+double position =
+        MathUtil.clamp(positionRad + angleOffset, MIN_POSITION.get(), MAX_POSITION.get());
+
+profiledFeedback.setGoal(position);
+</code></pre>
+<h2 id="standards">Standards</h2>
+<p>The standards for control loops are as follows:
+* All gains should be stored as <a href="LOGGING_STANDARDS.md"><code>LoggedTunableNumber</code></a> objects in the appropriate subsystem's constants file.
+    * ex. (Hood gains for FRC 190 2024 robot, Snapback)
+    <code>java
+    public static final LoggedTunableNumber KP = new LoggedTunableNumber("Hood/Kp");
+  public static final LoggedTunableNumber KD = new LoggedTunableNumber("Hood/Kd");
+  public static final LoggedTunableNumber MAX_VELOCITY = new LoggedTunableNumber("Hood/Max Velocity");
+  public static final LoggedTunableNumber MAX_ACCELERATION = new LoggedTunableNumber("Hood/Max Acceleration");</code>
+    * Make sure to initialize defaults <a href="CONSTANTS_STANDARDS.md">appropriately</a>.
+* For actual hardware, all control loops should be run onboard the motorcontroller. See Pheonix 6/Pro documentation for more details.
+* For simulated hardware, all control loops should use WPILib classes.</p>
+<h2 id="tuning-controller-gains">Tuning Controller Gains</h2>
+<p>Figuring out what the value of each gain should be can be challenging, but with a good tuning process, it can be done methodically.</p>
+<h3 id="manual-tuning">Manual Tuning</h3>
+<p>While tuning controllers manually, it is important to consider the units of the process variable. Consider an example of a single swerve wheel rotation controlled by raw voltage. The unit for the position of the wheel will be radians, and the unit for velocity is radians per second. Swerve wheel rotation works by wrapping the value of the rotation to between (-3.14, 3.14) radians, meaning the maximum error the wheel can experience is 3.14 radians from the setpoint. The maximum voltage the battery can supply a motor is 12 V. Armed with this information, it is plausible to estimate the order of magnitude that $K_p$ and $K_d$ should be.</p>
+<h4 id="pid-controller">PID Controller</h4>
+<ol>
+<li>Set $K_d$ and $K_i$ to 0.</li>
+<li>Increase $K_p$ from 0 by small increments until the mechanism starts oscillating around the setpoint.</li>
+<li>
+<p>Slowly increase $K_d$ until the robot stops oscillating.</p>
+</li>
+<li>
+<p>NOTES:</p>
+<ul>
+<li>If the robot is jittery when tuning, reduce $K_d$</li>
+<li>If the robot experiences steady state error, consider implementing a Feedforward.</li>
+<li>A PID controller is tuned well if the output gets to the setpoint quickly without oscillating (green line):
+<img alt="PID Diagram" src="images\pid-overshoot-undershoop-oscillation-diagram-explain.jpg" /></li>
+</ul>
+</li>
+</ol>
+<h4 id="pid-controller-with-motion-profile">PID Controller with Motion Profile</h4>
+<ol>
+<li>Set $K_p$ $K_i$ and $K_d$ to 0.</li>
+<li>Set the maximum velocity and acceleration for the motion profile very low.</li>
+<li>Tune the PID controller until the output tracks the setpoint well.</li>
+<li>
+<p>Continue this process by incrementing maximum velocity and acceleration and tuning PID until the maximum velocity and acceleration are reasonable.</p>
+</li>
+<li>
+<p>NOTES:</p>
+<ul>
+<li>A motion profiled PID controller is tuned well when the output "tracks" the profile setpoints well. This means that the output should closely follow the shape of the motion profile.</li>
+</ul>
+</li>
+</ol>
+<h3 id="sysid-tuning"><a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html">SysID Tuning</a></h3>
+<p>Fortunately, WPILib offers a relatively simple way of empirically measuring what the optimal feedforward gains should be. The SysID tutorial goes over what is needed to perform this task, however there are some standards to mention:</p>
+<ul>
+<li><code>SysIDRoutine</code> code should be declared as a member variable of its subsystem:
+    <!-- * ex. (Shooter SysID Routine for FRC 190 2024 robot, Snapback) -->
+    <code>java
+    private final SysIdRoutine sysIdRoutine =
+      new SysIdRoutine(
+          new SysIdRoutine.Config(
+              Volts.of(ShooterConstants.RAMP_RATE_VOLTAGE)
+                  .per(Seconds.of(ShooterConstants.RAMP_RATE_SECONDS)),
+              Volts.of(ShooterConstants.STEP_VOLTAGE),
+              Seconds.of(ShooterConstants.SYSID_TIMEOUT),
+              (state) -&gt; Logger.recordOutput("Shooter/SysID State", state.toString())),
+          new SysIdRoutine.Mechanism((volts) -&gt; setVoltage(volts.in(Volts)), null, this));</code></li>
+<li>The command to actually run SysID will be written as a command factory in the subsystem as follows:
+    <!-- * ex. (Shooter SysID Command for FRC 190 2024 robot, Snapback) -->
+    <code>java
+    public Command runSysId() {
+        return Commands.sequence(
+            sysIdRoutine.quasistatic(Direction.kForward),
+            Commands.waitSeconds(ShooterConstants.SYSID_DELAY),
+            sysIdRoutine.quasistatic(Direction.kReverse),
+            Commands.waitSeconds(ShooterConstants.SYSID_DELAY),
+            sysIdRoutine.dynamic(Direction.kForward),
+            Commands.waitSeconds(ShooterConstants.SYSID_DELAY),
+            sysIdRoutine.dynamic(Direction.kReverse));
+    }</code></li>
+<li>All SysID Commands should be added to the list of autonomous modes if the robot is in <a href="LOGGING_STANDARDS.md">Tuning Mode</a></li>
+</ul>
+<!-- ex. (SysID autonomous routines for FRC 190 2024 robot, Snapback) -->
+
+<pre><code class="language-java">if (Constants.TUNING_MODE) {
+      autoChooser.addOption(&quot;Shooter SysID&quot;, shooter.runSysId());
+      autoChooser.addOption(
+          &quot;Drive Quasistatic Forward&quot;,
+          DriveCommands.runSysIdQuasistatic(drive, Direction.kForward));
+      autoChooser.addOption(
+          &quot;Drive Quasistatic Reverse&quot;,
+          DriveCommands.runSysIdQuasistatic(drive, Direction.kReverse));
+      autoChooser.addOption(
+          &quot;Drive Dynamic Forward&quot;, DriveCommands.runSysIdDynamic(drive, Direction.kForward));
+      autoChooser.addOption(
+          &quot;Drive Dynamic Reverse&quot;, DriveCommands.runSysIdDynamic(drive, Direction.kReverse));
+    }
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../subsystem-standards/" class="btn btn-neutral float-left" title="Subsystem Standards"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../robotstate-standards/" class="btn btn-neutral float-right" title="RobotState Standards">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../subsystem-standards/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../robotstate-standards/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
