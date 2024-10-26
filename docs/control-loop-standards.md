@@ -1,6 +1,6 @@
 # Control Loop Standards
 
-This section provides standards that govern how control loops are implemented in 190 robot code.
+This section provides standards that govern how control loops are implemented in 1648 robot code.
 
 ## Feedback and PID Control
 ### Key Terms:
@@ -61,7 +61,7 @@ WPILib has multiple [Feedforward classes](https://docs.wpilib.org/en/stable/docs
 
 When controlling a mechanism, it is often necessary to use both a Feedforward and Feedback controller to account for steady state error like gravity or static friction, while still controlling the mechanism to the setpoint. This is done by simply adding the PID controller output to the feedforward output.
 
-ex. (Shooter Feedforward and PID controller from FRC 190 2024 robot, Snapback)
+<!-- ex. (Shooter Feedforward and PID controller from FRC 190 2024 robot, Snapback) -->
 
 ```java
 leftFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
@@ -89,7 +89,7 @@ In FRC, it is often necessary to limit the speed or acceleration of a mechanism.
 
 WPILib has a [ProfiledPIDController class](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/profiled-pidcontroller.html) which handles the setpoint generation automatically.
 
-ex. (Hood profiled PID controller for FRC 190 2024 robot, Snapback)
+ex. (Hood profiled PID controller for FRC 1648 2024 robot, Snapback)
 
 ```java
 ProfiledPIDController profiledFeedback =
@@ -151,7 +151,7 @@ While tuning controllers manually, it is important to consider the units of the 
 Fortunately, WPILib offers a relatively simple way of empirically measuring what the optimal feedforward gains should be. The SysID tutorial goes over what is needed to perform this task, however there are some standards to mention:
 
 * ```SysIDRoutine``` code should be declared as a member variable of its subsystem:
-    * ex. (Shooter SysID Routine for FRC 190 2024 robot, Snapback)
+    <!-- * ex. (Shooter SysID Routine for FRC 190 2024 robot, Snapback) -->
     ```java
     private final SysIdRoutine sysIdRoutine =
       new SysIdRoutine(
@@ -164,7 +164,7 @@ Fortunately, WPILib offers a relatively simple way of empirically measuring what
           new SysIdRoutine.Mechanism((volts) -> setVoltage(volts.in(Volts)), null, this));
     ```
 * The command to actually run SysID will be written as a command factory in the subsystem as follows:
-    * ex. (Shooter SysID Command for FRC 190 2024 robot, Snapback)
+    <!-- * ex. (Shooter SysID Command for FRC 190 2024 robot, Snapback) -->
     ```java
     public Command runSysId() {
         return Commands.sequence(
@@ -179,7 +179,7 @@ Fortunately, WPILib offers a relatively simple way of empirically measuring what
     ```
 * All SysID Commands should be added to the list of autonomous modes if the robot is in [Tuning Mode](LOGGING_STANDARDS.md)
 
-ex. (SysID autonomous routines for FRC 190 2024 robot, Snapback)
+<!-- ex. (SysID autonomous routines for FRC 190 2024 robot, Snapback) -->
 
 ```java
 if (Constants.TUNING_MODE) {

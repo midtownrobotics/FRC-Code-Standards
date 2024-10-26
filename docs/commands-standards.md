@@ -60,7 +60,7 @@ public static final Command getCollectCommand(Intake intake, Serializer serializ
 
 Composite commands reside in their own class called ```CompositeCommands.java```.
 
-ex. ([```CompositeCommands.java```](https://github.com/Team-190/2k24-Robot-Code/blob/main/src/main/java/frc/robot/commands/CompositeCommands.java) from FRC 190 2024 robot, Snapback)
+<!-- ex. ([```CompositeCommands.java```](https://github.com/Team-190/2k24-Robot-Code/blob/main/src/main/java/frc/robot/commands/CompositeCommands.java) from FRC 190 2024 robot, Snapback) -->
 
 ## Button Bindings and Triggers
 Commands tell the robot to execute tasks, but in order for the robot code to schedule the command for execution, it needs to be bound to a [Trigger](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html). Triggers tell the robot which conditions need to be met to execute commands. Triggers are always instantiated in the ```configureButtonBindings()``` method of ```RobotContainer.java```.
@@ -88,7 +88,7 @@ However, this usually isn't necessary because required subsystems get passed int
 
 Arbitrary Triggers are most useful when a condition must be met across a wide number of commands.
 
-ex. (Shoot button binding with arbitrary trigger on FRC 190 2024 robot, Snapback)
+<!-- ex. (Shoot button binding with arbitrary trigger on FRC 190 2024 robot, Snapback) -->
 ```java
 Trigger shooterReady = new Trigger(() -> RobotState.shooterReady(hood, shooter))
 

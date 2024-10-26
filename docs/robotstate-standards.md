@@ -43,7 +43,7 @@ public RobotState(
 
 The constructor should be called in ```RobotContainer.java``` just before the button bindings are configured:
 
-ex. (```RobotState.java``` construction in ```RobotContainer.java``` for FRC 190 2024 robot, Snapback)
+<!-- ex. (```RobotState.java``` construction in ```RobotContainer.java``` for FRC 190 2024 robot, Snapback) -->
 
 ```java
 // ...
@@ -68,7 +68,7 @@ For shooting games, interpolating hoods and flywheels are very important to dyna
 
 All interpolation map values are added in a static block:
 
-ex. (Interpolation maps from FRC 190 robot, Snapback)
+<!-- ex. (Interpolation maps from FRC 190 robot, Snapback) -->
 ```java
 static {
     // Units: radians per second
@@ -103,7 +103,7 @@ static {
 
 Because of the 1/2" field tolerance, each FRC field can be different, therefore it is paramount that there be a method for adjusting shots on the fly.
 
-ex. (Shot compensation for FRC 190 2024 robot, Snapback)
+<!-- ex. (Shot compensation for FRC 190 2024 robot, Snapback) -->
 
 ```java
 @Getter @Setter private static double flywheelOffset = 0.0;
@@ -145,7 +145,7 @@ Periodically on the robot, the ```RobotState.java``` class takes all the informa
 
 This data is calculated, and stored in a record called ```ControlData```:
 
-ex. (```ControlData``` from FRC 190 2024 robot, Snapback)
+<!-- ex. (```ControlData``` from FRC 190 2024 robot, Snapback) -->
 ```java
 public static record ControlData(
       Rotation2d robotAngle,

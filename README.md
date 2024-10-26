@@ -1,28 +1,26 @@
-# FRC 190 Code Standards
-Welcome to the official repository for the code standard guidelines of FRC 190. This repository serves as a comprehensive reference for all team members to follow when writing code for our robotics projects. Consistency and readability are crucial aspects of maintaining a high-quality codebase, and these guidelines are designed to promote best practices across all our programming endeavors.
+# FRC 1648 Code Standards
+This repository is the definitive guide for all team members, outlining the coding conventions and best practices to follow when developing software for our robotics projects. Consistency, readability, and maintainability are key to sustaining a high-quality codebase. These guidelines have been crafted to ensure that every contributor follows a unified approach, helping us build reliable, efficient, and scalable systems.
 
 ## Purpose
-The purpose of this repository is to establish a set of standards and conventions that ensure clarity, maintainability, and collaboration within our team's software development process. By adhering to these guidelines, we aim to:
+This repository defines the coding standards and best practices that guide our team’s software development process. The purpose is to ensure that our codebase remains clear, maintainable, and scalable while promoting collaboration and technical excellence. These guidelines serve not only as rules but as a foundation for building high-quality robotics software that every team member can confidently contribute to. By following these practices, we aim to:
 
-* Enhance code readability and comprehension for all team members.
-* Facilitate seamless collaboration by maintaining consistent coding styles and practices.
-* Promote efficiency and reduce errors through standardized approaches to coding, documentation, and testing.
-* Cultivate a culture of excellence and professionalism in our software development efforts.
+* Improve Code Clarity: Write code that is easy to read, understand, and modify, making it accessible to all team members, regardless of experience.
+* Support Collaboration: Create a cohesive development environment by establishing uniform coding conventions, enabling smoother teamwork and onboarding of new developers.
+* Ensure Maintainability: Build a robust codebase that can be easily maintained and extended, ensuring the longevity of our projects across seasons.
+* Boost Efficiency and Reliability: Reduce bugs and development time by using proven, standardized approaches for coding, testing, and debugging.
+* Foster Innovation and Excellence: Encourage a culture of continual learning, improvement, and technical mastery by adhering to professional-level coding standards.
+* Ensure Safety and Robustness: Implement safeguards in code to protect against failures or unforeseen issues, ensuring the safety and reliability of our robots in competition and testing.
 
-## How to Use This Repository
-In this repository, you will find detailed guidelines covering various aspects of coding standards, including naming conventions, formatting rules, documentation practices, and more. When refactoring robot code, it is important to go through class by class and make sure each one is up to each of the standards listed below.
-
-We encourage all team members to actively contribute to the evolution of our code standards by suggesting improvements, reporting issues, or proposing new guidelines through the repository's issue tracker and pull request mechanism. Together, we can continuously refine our practices and elevate the quality of our codebase.
-
-## Robots Implemented
-* FRC 190 2024 robot, [Snapback](https://github.com/Team-190/2k24-Offseason-Code/tree/localization-multi-camera)
+<!-- ## Robots Implemented
+Add Future Robots Here -->
 
 ## Table of Contents
-* [Global Standards](GLOBAL_STANDARDS.md)
-* [Constants Standards](CONSTANTS_STANDARDS.md)
-* [Logging Standards](LOGGING_STANDARDS.md)
-* [AdvantageKit Standards](ADVANTAGEKIT_STANDARDS.md)
-* [Subsystem Standards](SUBSYSTEM_STANDARDS.md)
-* [Command Standards](COMMANDS_STANDARDS.md)
-* [Control Loop Standards](CONTROL_LOOP_STANDARDS.md)
-* [```RobotState.java``` Standards](ROBOTSTATE_STANDARDS.md)
+* [Global Standards](global-standards.md)
+* [Filesystem Standards](filesystem-standards.md)
+* [Constants Standards](constants-standards.md)
+* [Logging Standards](logging-standards.md)
+* [AdvantageKit Standards](advantagekit-standards.md)
+* [Subsystem Standards](subsystem-standards.md)
+* [Command Standards](commands-standards.md)
+* [Control Loop Standards](control-loop-standards.md)
+* [```RobotState.java``` Standards](robotstate-standards.md)

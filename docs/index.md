@@ -22,5 +22,5 @@ Add Future Robots Here -->
 * [AdvantageKit Standards](advantagekit-standards.md)
 * [Subsystem Standards](subsystem-standards.md)
 * [Command Standards](commands-standards.md)
-* [Control Loop Standards](CONTROL_LOOP_STANDARDS.md)
-* [```RobotState.java``` Standards](ROBOTSTATE_STANDARDS.md)
+* [Control Loop Standards](control-loop-standards.md)
+* [```RobotState.java``` Standards](robotstate-standards.md)
