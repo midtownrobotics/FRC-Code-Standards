@@ -1,0 +1,42 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# MkDocs build output
+site/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# MkDocs configuration cache
+*.cache
+
+# Editor/IDE settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Pip and dependency files
+*.egg-info/
+*.eggs/
+dist/
+build/
+*.pyc
+*.pyo
