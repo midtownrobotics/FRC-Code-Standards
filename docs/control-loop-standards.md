@@ -21,8 +21,6 @@ The most common form of feedback control is a [PID controller](https://docs.wpil
 
 [WPILib](https://github.com/wpilibsuite/allwpilib) has a built in [PID Controller class](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html) that is used when implementing feedback control.
 
-ex. (PID controller to aim the robot at the speaker for FRC 190 2024 robot, Snapback)
-
 ```java
 PIDController aimController =
         new PIDController(autoAimKP.get(), 0.0, autoAimKD.get(), Constants.LOOP_PERIOD_SECS);
@@ -60,8 +58,6 @@ WPILib has multiple [Feedforward classes](https://docs.wpilib.org/en/stable/docs
 ## Combining Feedback and Feedforward control
 
 When controlling a mechanism, it is often necessary to use both a Feedforward and Feedback controller to account for steady state error like gravity or static friction, while still controlling the mechanism to the setpoint. This is done by simply adding the PID controller output to the feedforward output.
-
-<!-- ex. (Shooter Feedforward and PID controller from FRC 190 2024 robot, Snapback) -->
 
 ```java
 leftFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
@@ -110,9 +106,9 @@ profiledFeedback.setGoal(position);
 ## Standards
 The standards for control loops are as follows:
 * All gains should be stored as [```LoggedTunableNumber```](LOGGING_STANDARDS.md) objects in the appropriate subsystem's constants file.
-    * ex. (Hood gains for FRC 190 2024 robot, Snapback)
-    ```java
-    public static final LoggedTunableNumber KP = new LoggedTunableNumber("Hood/Kp");
+
+```java
+  public static final LoggedTunableNumber KP = new LoggedTunableNumber("Hood/Kp");
   public static final LoggedTunableNumber KD = new LoggedTunableNumber("Hood/Kd");
   public static final LoggedTunableNumber MAX_VELOCITY = new LoggedTunableNumber("Hood/Max Velocity");
   public static final LoggedTunableNumber MAX_ACCELERATION = new LoggedTunableNumber("Hood/Max Acceleration");
@@ -151,7 +147,7 @@ While tuning controllers manually, it is important to consider the units of the 
 Fortunately, WPILib offers a relatively simple way of empirically measuring what the optimal feedforward gains should be. The SysID tutorial goes over what is needed to perform this task, however there are some standards to mention:
 
 * ```SysIDRoutine``` code should be declared as a member variable of its subsystem:
-    <!-- * ex. (Shooter SysID Routine for FRC 190 2024 robot, Snapback) -->
+
     ```java
     private final SysIdRoutine sysIdRoutine =
       new SysIdRoutine(
@@ -164,7 +160,7 @@ Fortunately, WPILib offers a relatively simple way of empirically measuring what
           new SysIdRoutine.Mechanism((volts) -> setVoltage(volts.in(Volts)), null, this));
     ```
 * The command to actually run SysID will be written as a command factory in the subsystem as follows:
-    <!-- * ex. (Shooter SysID Command for FRC 190 2024 robot, Snapback) -->
+
     ```java
     public Command runSysId() {
         return Commands.sequence(
@@ -178,8 +174,6 @@ Fortunately, WPILib offers a relatively simple way of empirically measuring what
     }
     ```
 * All SysID Commands should be added to the list of autonomous modes if the robot is in [Tuning Mode](LOGGING_STANDARDS.md)
-
-<!-- ex. (SysID autonomous routines for FRC 190 2024 robot, Snapback) -->
 
 ```java
 if (Constants.TUNING_MODE) {

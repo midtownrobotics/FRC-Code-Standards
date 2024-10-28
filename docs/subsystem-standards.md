@@ -16,8 +16,6 @@ Subsystems are how FRC teams split up the logic for the different parts of the r
 * Contain all logic for that subsystem.
 <!-- * Contain all necessary command factories. -->
 
-<!-- ex. (Accelerator subsystem from FRC 190 2024 robot, Snapback) -->
-
 ```java
 package frc.robot.subsystems.accelerator;
 

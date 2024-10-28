@@ -9,8 +9,6 @@ The ```RobotState.java``` class is used for multiple things:
 ## Constructing RobotState.java
 One of the purposes of ```RobotState.java``` is to combine odometry and vision data to get a more accurate estimated robot pose. This is done by passing suppliers into the ```RobotState.java``` constructor:
 
-ex. (```RobotState.java``` constructor from FRC 190 2024 robot, Snapback)
-
 ```java
 public RobotState(
       Supplier<Rotation2d> robotHeadingSupplier,
@@ -43,8 +41,6 @@ public RobotState(
 
 The constructor should be called in ```RobotContainer.java``` just before the button bindings are configured:
 
-<!-- ex. (```RobotState.java``` construction in ```RobotContainer.java``` for FRC 190 2024 robot, Snapback) -->
-
 ```java
 // ...
 
@@ -68,7 +64,6 @@ For shooting games, interpolating hoods and flywheels are very important to dyna
 
 All interpolation map values are added in a static block:
 
-<!-- ex. (Interpolation maps from FRC 190 robot, Snapback) -->
 ```java
 static {
     // Units: radians per second
@@ -102,8 +97,6 @@ static {
 ```
 
 Because of the 1/2" field tolerance, each FRC field can be different, therefore it is paramount that there be a method for adjusting shots on the fly.
-
-<!-- ex. (Shot compensation for FRC 190 2024 robot, Snapback) -->
 
 ```java
 @Getter @Setter private static double flywheelOffset = 0.0;
@@ -145,7 +138,6 @@ Periodically on the robot, the ```RobotState.java``` class takes all the informa
 
 This data is calculated, and stored in a record called ```ControlData```:
 
-<!-- ex. (```ControlData``` from FRC 190 2024 robot, Snapback) -->
 ```java
 public static record ControlData(
       Rotation2d robotAngle,

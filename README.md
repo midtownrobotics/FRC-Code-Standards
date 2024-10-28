@@ -1,4 +1,7 @@
 # FRC 1648 Code Standards
+
+View the website here: https://midtownrobotics.github.io/FRC-Code-Standards/
+
 This repository is the definitive guide for all team members, outlining the coding conventions and best practices to follow when developing software for our robotics projects. Consistency, readability, and maintainability are key to sustaining a high-quality codebase. These guidelines have been crafted to ensure that every contributor follows a unified approach, helping us build reliable, efficient, and scalable systems.
 
 ## Purpose

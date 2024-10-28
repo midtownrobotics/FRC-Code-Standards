@@ -10,6 +10,7 @@ frc/
 │   │   ├── auton/
 │   │   │   └── SomeAutonCommand.java
 │   │   └── SomeCommand.java
+│   │
 │   ├── sensors/
 │   │   └── some-sensor/
 │   │       ├── SomeSensor.java
@@ -17,6 +18,7 @@ frc/
 │   │       ├── SomeSensorIO.java
 │   │       ├── SomeSensorIOSim.java
 │   │       └── SomeSensorIOType.java
+│   │
 │   ├── subsystems/
 │   │   └── some-subsystem/
 │   │       ├── some-mechanism/
@@ -25,6 +27,7 @@ frc/
 │   │       │   └── SomeMechanismIOType.java
 │   │       ├── SomeSubsystem.java
 │   │       └── SomeSubsystemConstants.java
+│   │
 │   ├── utils/
 │   │
 │   ├── BuildConstants.java

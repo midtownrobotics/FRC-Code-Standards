@@ -12,8 +12,6 @@ Each subsystem requires its own set of constants, however, because the robot cod
 
 Each subsystem will have a constants file in the same directory as the subsystem. Each constant will be declared before it is instantiated, (except for any [Tunable Numbers](TUNABLE_NUMBER_STANDARDS.md) whose values are set after being initialized). Constants will be instantiated in a static block based on which robot is currently running the code. This is done with a switch statement. If a constant is the same across all robots, it is instantiated above the switch statement.
 
-<!-- ex. (Serializer subsystem constants from FRC 190 2024 robot, Snapback) -->
-
 ```java
 package frc.robot.subsystems.serializer;
 

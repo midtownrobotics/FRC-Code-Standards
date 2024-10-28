@@ -6,8 +6,6 @@ In order for a subsystem to be useful, they must be told to do something, this i
 
 Simple commands that only require one subsystem are located in that subsystem.
 
-<!-- ex. (Shooter command to run flywheels at set velocity on FRC 190 2024 robot, Snapback) -->
-
 ```java
 public Command runVelocity() {
     return runEnd(
@@ -29,8 +27,6 @@ shooter.runVelocity();
 
 ## Subsystem Command Exceptions
 In long and complicated subsystems that have a lot of logic, it can be useful to separate commands into a different class to improve code readibility.
-
-<!-- ex. ([DriveCommands.java](https://github.com/Team-190/2k24-Robot-Code/blob/main/src/main/java/frc/robot/commands/DriveCommands.java) from FRC 190 2024 robot, Snapback) -->
 
 ## Composite Commands
 Composite commands are commands that are made up of more than one pre-defined command. They always take the form of a static factory. In general, composite commands should never be their own classes. [WPIlib](https://github.com/wpilibsuite/allwpilib) has excellent documentation on [Command Composition](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-compositions.html) as well as [Command Decorators](https://docs.wpilib.org/en/2020/docs/software/commandbased/convenience-features.html) which are much more intuitive and concise.
@@ -60,12 +56,9 @@ public static final Command getCollectCommand(Intake intake, Serializer serializ
 
 Composite commands reside in their own class called ```CompositeCommands.java```.
 
-<!-- ex. ([```CompositeCommands.java```](https://github.com/Team-190/2k24-Robot-Code/blob/main/src/main/java/frc/robot/commands/CompositeCommands.java) from FRC 190 2024 robot, Snapback) -->
-
 ## Button Bindings and Triggers
 Commands tell the robot to execute tasks, but in order for the robot code to schedule the command for execution, it needs to be bound to a [Trigger](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html). Triggers tell the robot which conditions need to be met to execute commands. Triggers are always instantiated in the ```configureButtonBindings()``` method of ```RobotContainer.java```.
 
-<!-- ex. (Shoot button binding on FRC 190 2024 robot, Snapback) -->
 ```java
 driver
         .rightBumper()
@@ -88,7 +81,6 @@ However, this usually isn't necessary because required subsystems get passed int
 
 Arbitrary Triggers are most useful when a condition must be met across a wide number of commands.
 
-<!-- ex. (Shoot button binding with arbitrary trigger on FRC 190 2024 robot, Snapback) -->
 ```java
 Trigger shooterReady = new Trigger(() -> RobotState.shooterReady(hood, shooter))
 

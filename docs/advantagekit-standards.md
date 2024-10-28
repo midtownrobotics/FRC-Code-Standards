@@ -57,7 +57,6 @@ IO implementations are where actual hardware behaviors are defined. Each IO impl
 - Override ```updateInputs()``` for specific hardware updates.
 - Implement hardware specific actuation.
 
-<!-- ex. (Intake TalonFX IO implementation for FRC 190 2024 robot, Snapback) -->
 ```java
 package frc.robot.subsystems.intake;
 
@@ -157,7 +156,6 @@ public class IntakeIOTalonFX implements IntakeIO {
 ## Simulated IO Implementations
 IO implementations can also be physics simulators. Instead of having simulation code in the subsystem, an IO implementation can be written and instantiated when running the robot code in simulation.
 
-<!-- ex. (Intake simulator IO implementation for FRC 190 2024 robot, Snapback) -->
 
 ```java
 package frc.robot.subsystems.intake;

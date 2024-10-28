@@ -42,6 +42,12 @@ Member variables should always be private with ```@Getter```/```@Setter``` annot
 
 Constants should always have the ```public static final``` modifiers.
 
+
+### Null Checks
+All variables which may be null should be wrapped in an Optional Type. Ideally have null analysis running as well.
+
+Being null-safe is crucial in software development as it prevents unexpected runtime errors and enhances code reliability. Without proper null checks, programs risk NullPointerExceptions, leading to crashes and a poor user experience. By using optional types and performing checks, developers can create more predictable, error-resistant code, simplifying debugging and improving maintainability for future development.
+
 ## Default Units
 1648 uses these default units for all robot code:
 
