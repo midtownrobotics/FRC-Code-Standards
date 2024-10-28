@@ -91,20 +91,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#standards">Standards</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tuning-controller-gains">Tuning Controller Gains</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#manual-tuning">Manual Tuning</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#pid-controller">PID Controller</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#pid-controller-with-motion-profile">PID Controller with Motion Profile</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sysid-tuning">SysID Tuning</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -151,7 +137,6 @@
 <h3 id="pid-controllers">PID controllers</h3>
 <p>The most common form of feedback control is a <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/introduction/introduction-to-pid.html#introduction-to-pid">PID controller</a>. PID controllers consist of 3 gains which influence the behavior of different parts of the mechanism.</p>
 <p><a href="https://github.com/wpilibsuite/allwpilib">WPILib</a> has a built in <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html">PID Controller class</a> that is used when implementing feedback control.</p>
-<p>ex. (PID controller to aim the robot at the speaker for FRC 190 2024 robot, Snapback)</p>
 <pre><code class="language-java">PIDController aimController =
         new PIDController(autoAimKP.get(), 0.0, autoAimKD.get(), Constants.LOOP_PERIOD_SECS);
 
@@ -178,8 +163,6 @@ aimController.calculate(
 <p>WPILib has multiple <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/feedforward.html">Feedforward classes</a> which are used for implementing Feedforward control.</p>
 <h2 id="combining-feedback-and-feedforward-control">Combining Feedback and Feedforward control</h2>
 <p>When controlling a mechanism, it is often necessary to use both a Feedforward and Feedback controller to account for steady state error like gravity or static friction, while still controlling the mechanism to the setpoint. This is done by simply adding the PID controller output to the feedforward output.</p>
-<!-- ex. (Shooter Feedforward and PID controller from FRC 190 2024 robot, Snapback) -->
-
 <pre><code class="language-java">leftFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
 rightFeedback = new PIDController(KP.get(), 0.0, KD.get(), Constants.LOOP_PERIOD_SECS);
 
@@ -217,58 +200,48 @@ profiledFeedback.setGoal(position);
 </code></pre>
 <h2 id="standards">Standards</h2>
 <p>The standards for control loops are as follows:
-* All gains should be stored as <a href="LOGGING_STANDARDS.md"><code>LoggedTunableNumber</code></a> objects in the appropriate subsystem's constants file.
-    * ex. (Hood gains for FRC 190 2024 robot, Snapback)
-    <code>java
-    public static final LoggedTunableNumber KP = new LoggedTunableNumber("Hood/Kp");
-  public static final LoggedTunableNumber KD = new LoggedTunableNumber("Hood/Kd");
-  public static final LoggedTunableNumber MAX_VELOCITY = new LoggedTunableNumber("Hood/Max Velocity");
-  public static final LoggedTunableNumber MAX_ACCELERATION = new LoggedTunableNumber("Hood/Max Acceleration");</code>
-    * Make sure to initialize defaults <a href="CONSTANTS_STANDARDS.md">appropriately</a>.
+* All gains should be stored as <a href="LOGGING_STANDARDS.md"><code>LoggedTunableNumber</code></a> objects in the appropriate subsystem's constants file.</p>
+<pre><code class="language-java">  public static final LoggedTunableNumber KP = new LoggedTunableNumber(&quot;Hood/Kp&quot;);
+  public static final LoggedTunableNumber KD = new LoggedTunableNumber(&quot;Hood/Kd&quot;);
+  public static final LoggedTunableNumber MAX_VELOCITY = new LoggedTunableNumber(&quot;Hood/Max Velocity&quot;);
+  public static final LoggedTunableNumber MAX_ACCELERATION = new LoggedTunableNumber(&quot;Hood/Max Acceleration&quot;);
+    ```
+    * Make sure to initialize defaults [appropriately](CONSTANTS_STANDARDS.md).
 * For actual hardware, all control loops should be run onboard the motorcontroller. See Pheonix 6/Pro documentation for more details.
-* For simulated hardware, all control loops should use WPILib classes.</p>
-<h2 id="tuning-controller-gains">Tuning Controller Gains</h2>
-<p>Figuring out what the value of each gain should be can be challenging, but with a good tuning process, it can be done methodically.</p>
-<h3 id="manual-tuning">Manual Tuning</h3>
-<p>While tuning controllers manually, it is important to consider the units of the process variable. Consider an example of a single swerve wheel rotation controlled by raw voltage. The unit for the position of the wheel will be radians, and the unit for velocity is radians per second. Swerve wheel rotation works by wrapping the value of the rotation to between (-3.14, 3.14) radians, meaning the maximum error the wheel can experience is 3.14 radians from the setpoint. The maximum voltage the battery can supply a motor is 12 V. Armed with this information, it is plausible to estimate the order of magnitude that $K_p$ and $K_d$ should be.</p>
-<h4 id="pid-controller">PID Controller</h4>
-<ol>
-<li>Set $K_d$ and $K_i$ to 0.</li>
-<li>Increase $K_p$ from 0 by small increments until the mechanism starts oscillating around the setpoint.</li>
-<li>
-<p>Slowly increase $K_d$ until the robot stops oscillating.</p>
-</li>
-<li>
-<p>NOTES:</p>
-<ul>
-<li>If the robot is jittery when tuning, reduce $K_d$</li>
-<li>If the robot experiences steady state error, consider implementing a Feedforward.</li>
-<li>A PID controller is tuned well if the output gets to the setpoint quickly without oscillating (green line):
-<img alt="PID Diagram" src="images\pid-overshoot-undershoop-oscillation-diagram-explain.jpg" /></li>
-</ul>
-</li>
-</ol>
-<h4 id="pid-controller-with-motion-profile">PID Controller with Motion Profile</h4>
-<ol>
-<li>Set $K_p$ $K_i$ and $K_d$ to 0.</li>
-<li>Set the maximum velocity and acceleration for the motion profile very low.</li>
-<li>Tune the PID controller until the output tracks the setpoint well.</li>
-<li>
-<p>Continue this process by incrementing maximum velocity and acceleration and tuning PID until the maximum velocity and acceleration are reasonable.</p>
-</li>
-<li>
-<p>NOTES:</p>
-<ul>
-<li>A motion profiled PID controller is tuned well when the output "tracks" the profile setpoints well. This means that the output should closely follow the shape of the motion profile.</li>
-</ul>
-</li>
-</ol>
-<h3 id="sysid-tuning"><a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html">SysID Tuning</a></h3>
-<p>Fortunately, WPILib offers a relatively simple way of empirically measuring what the optimal feedforward gains should be. The SysID tutorial goes over what is needed to perform this task, however there are some standards to mention:</p>
-<ul>
-<li><code>SysIDRoutine</code> code should be declared as a member variable of its subsystem:
-    <!-- * ex. (Shooter SysID Routine for FRC 190 2024 robot, Snapback) -->
-    <code>java
+* For simulated hardware, all control loops should use WPILib classes.
+
+## Tuning Controller Gains
+Figuring out what the value of each gain should be can be challenging, but with a good tuning process, it can be done methodically.
+
+### Manual Tuning
+While tuning controllers manually, it is important to consider the units of the process variable. Consider an example of a single swerve wheel rotation controlled by raw voltage. The unit for the position of the wheel will be radians, and the unit for velocity is radians per second. Swerve wheel rotation works by wrapping the value of the rotation to between (-3.14, 3.14) radians, meaning the maximum error the wheel can experience is 3.14 radians from the setpoint. The maximum voltage the battery can supply a motor is 12 V. Armed with this information, it is plausible to estimate the order of magnitude that $K_p$ and $K_d$ should be.
+
+#### PID Controller
+1. Set $K_d$ and $K_i$ to 0.
+2. Increase $K_p$ from 0 by small increments until the mechanism starts oscillating around the setpoint.
+3. Slowly increase $K_d$ until the robot stops oscillating.
+
+* NOTES:
+    * If the robot is jittery when tuning, reduce $K_d$
+    * If the robot experiences steady state error, consider implementing a Feedforward.
+    * A PID controller is tuned well if the output gets to the setpoint quickly without oscillating (green line):
+    ![PID Diagram](images\pid-overshoot-undershoop-oscillation-diagram-explain.jpg)
+
+#### PID Controller with Motion Profile
+1. Set $K_p$ $K_i$ and $K_d$ to 0.
+2. Set the maximum velocity and acceleration for the motion profile very low.
+3. Tune the PID controller until the output tracks the setpoint well.
+4. Continue this process by incrementing maximum velocity and acceleration and tuning PID until the maximum velocity and acceleration are reasonable.
+
+* NOTES:
+    * A motion profiled PID controller is tuned well when the output &quot;tracks&quot; the profile setpoints well. This means that the output should closely follow the shape of the motion profile.
+
+### [SysID Tuning](https://docs.wpilib.org/en/stable/docs/software/advanced-controls/system-identification/introduction.html)
+Fortunately, WPILib offers a relatively simple way of empirically measuring what the optimal feedforward gains should be. The SysID tutorial goes over what is needed to perform this task, however there are some standards to mention:
+
+* ```SysIDRoutine``` code should be declared as a member variable of its subsystem:
+
+    ```java
     private final SysIdRoutine sysIdRoutine =
       new SysIdRoutine(
           new SysIdRoutine.Config(
@@ -276,11 +249,12 @@ profiledFeedback.setGoal(position);
                   .per(Seconds.of(ShooterConstants.RAMP_RATE_SECONDS)),
               Volts.of(ShooterConstants.STEP_VOLTAGE),
               Seconds.of(ShooterConstants.SYSID_TIMEOUT),
-              (state) -&gt; Logger.recordOutput("Shooter/SysID State", state.toString())),
-          new SysIdRoutine.Mechanism((volts) -&gt; setVoltage(volts.in(Volts)), null, this));</code></li>
-<li>The command to actually run SysID will be written as a command factory in the subsystem as follows:
-    <!-- * ex. (Shooter SysID Command for FRC 190 2024 robot, Snapback) -->
-    <code>java
+              (state) -&gt; Logger.recordOutput(&quot;Shooter/SysID State&quot;, state.toString())),
+          new SysIdRoutine.Mechanism((volts) -&gt; setVoltage(volts.in(Volts)), null, this));
+    ```
+* The command to actually run SysID will be written as a command factory in the subsystem as follows:
+
+    ```java
     public Command runSysId() {
         return Commands.sequence(
             sysIdRoutine.quasistatic(Direction.kForward),
@@ -290,12 +264,12 @@ profiledFeedback.setGoal(position);
             sysIdRoutine.dynamic(Direction.kForward),
             Commands.waitSeconds(ShooterConstants.SYSID_DELAY),
             sysIdRoutine.dynamic(Direction.kReverse));
-    }</code></li>
-<li>All SysID Commands should be added to the list of autonomous modes if the robot is in <a href="LOGGING_STANDARDS.md">Tuning Mode</a></li>
-</ul>
-<!-- ex. (SysID autonomous routines for FRC 190 2024 robot, Snapback) -->
+    }
+    ```
+* All SysID Commands should be added to the list of autonomous modes if the robot is in [Tuning Mode](LOGGING_STANDARDS.md)
 
-<pre><code class="language-java">if (Constants.TUNING_MODE) {
+```java
+if (Constants.TUNING_MODE) {
       autoChooser.addOption(&quot;Shooter SysID&quot;, shooter.runSysId());
       autoChooser.addOption(
           &quot;Drive Quasistatic Forward&quot;,

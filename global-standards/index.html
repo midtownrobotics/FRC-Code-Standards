@@ -59,6 +59,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#modifiers">Modifiers</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#null-checks">Null Checks</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#default-units">Default Units</a>
@@ -156,6 +158,9 @@ public class SomeClass {
 <h3 id="modifiers">Modifiers</h3>
 <p>Member variables should always be private with <code>@Getter</code>/<code>@Setter</code> annotations if they require getters and/or setters. Static variables should always come before non-static variables</p>
 <p>Constants should always have the <code>public static final</code> modifiers.</p>
+<h3 id="null-checks">Null Checks</h3>
+<p>All variables which may be null should be wrapped in an Optional Type. Ideally have null analysis running as well.</p>
+<p>Being null-safe is crucial in software development as it prevents unexpected runtime errors and enhances code reliability. Without proper null checks, programs risk NullPointerExceptions, leading to crashes and a poor user experience. By using optional types and performing checks, developers can create more predictable, error-resistant code, simplifying debugging and improving maintainability for future development.</p>
 <h2 id="default-units">Default Units</h2>
 <p>1648 uses these default units for all robot code:</p>
 <table>
